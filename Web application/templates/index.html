@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Speech Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='image.jpg') }}" alt="Header Image">
+        <h1>Hate Speech Detection</h1>
+    </header>
+
+    <form action="/predict" method="POST">
+        <label for="comment">Enter your comment:</label><br>
+        <!-- Sử dụng value để giữ lại giá trị comment -->
+        <textarea id="comment" name="comment" rows="4" cols="50">{% if comment %}{{ comment }}{% endif %}</textarea><br>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction is not none %}
+        <p>Predicted Sentiment: {{ prediction }}</p>
+    {% endif %}
+
+</body>
+</html>
